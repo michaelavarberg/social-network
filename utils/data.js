@@ -88,7 +88,7 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Gets a random username
 const getRandomUsername = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(characters)}`;
+  `${getRandomArrItem(names)}${getRandomArrItem(characters)}`;
 
 // Function to generate random thoughts that we can add to the database. Includes video responses.
 const getRandomThoughts = (int) => {

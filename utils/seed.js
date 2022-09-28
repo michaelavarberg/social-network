@@ -8,7 +8,6 @@ connection.once("open", async () => {
   console.log("connected");
   await Thought.deleteMany({});
   await User.deleteMany({});
-  await Reaction.deleteMany({});
 
   const users = [];
   const thoughts = getRandomThoughts(10);
