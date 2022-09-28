@@ -20,3 +20,5 @@ const reactionSchema = new Schema({
     //add getter method to format timestamp on query
   },
 });
+
+module.exports = reactionSchema;
