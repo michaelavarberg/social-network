@@ -1,0 +1,7 @@
+//get all users
+//get single user by id
+//post a new user with username and id
+//update a user by id
+//delete a user by id (remove a users thoughts too)
+//post route to add a new friend to user's friend list
+//delete route to remove a friend from user's friend list
