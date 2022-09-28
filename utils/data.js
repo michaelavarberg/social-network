@@ -95,7 +95,6 @@ const getRandomThoughts = (int) => {
   let results = [];
   for (let i = 0; i < int; i++) {
     results.push({
-      createdAt: Math.random() < 0.5,
       thoughtText: getRandomArrItem(possibleThoughts),
       username: getRandomUsername(),
       reactions: [...getRandomReactions(3)],
