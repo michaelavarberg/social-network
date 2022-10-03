@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const reactionSchema = new Schema({
   reactionId: {
@@ -21,4 +21,11 @@ const reactionSchema = new Schema({
   },
 });
 
-module.exports = reactionSchema;
+const Reaction = model("reaction", reactionSchema);
+
+module.exports = Reaction;
+
+//When I set this up as a schema and only export the schema,
+//I get an error saying that Reaction.create is not a function.
+//When I create a model to fix this, then the fields inside this
+//schema don't make sense (ObjectId error)

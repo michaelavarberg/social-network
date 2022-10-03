@@ -1,13 +1,13 @@
 const { User, Thought, Reaction } = require("../models");
 
 module.exports = {
-  //get all thoughts
+  //get all thoughts - working
   getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-  //get a single thought by id
+  //get a single thought by id -working
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
@@ -18,12 +18,12 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //post route to create new thought (make sure to push thought's id to associated user's thoughts array)
+  //post route to create new thought (make sure to push thought's id to associated user's thoughts array) - working
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) =>
         User.findOneAndUpdate(
-          { username: thought.userId },
+          { username: req.body.username },
           { $push: { thoughts: thought._id } },
           { runValidators: true, new: true }
         )
@@ -31,14 +31,14 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: "No user found with this id" })
-          : res.json(user)
+          : res.json("New thought successfully created!")
       )
       .catch((err) => res.status(500).json(err));
   },
-  // put route to update thought by id
+  // put route to update thought by id - working
 
   updateThought(req, res) {
-    Thought.findOneaAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
@@ -50,7 +50,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  //delete route to remove thought by id
+  //delete route to remove thought by id - working
 
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
