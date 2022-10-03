@@ -21,9 +21,9 @@ const reactionSchema = new Schema({
   },
 });
 
-const Reaction = model("reaction", reactionSchema);
+// const Reaction = model("reaction", reactionSchema); (commented out since we are not supposed to make Reaction a model)
 
-module.exports = Reaction;
+module.exports = reactionSchema;
 
 //When I set this up as a schema and only export the schema,
 //I get an error saying that Reaction.create is not a function.
