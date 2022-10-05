@@ -12,7 +12,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //add getter method to format timestamp on query
+      get: time,
     },
     username: {
       type: String,
@@ -22,12 +22,16 @@ const thoughtSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
   }
 );
 
+function time(createdAt) {
+  return `${createdAt.getMonth()}/${createdAt.getDay()}/${createdAt.getFullYear()} at ${createdAt.getHours()}:${createdAt.getMinutes()}`;
+}
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
