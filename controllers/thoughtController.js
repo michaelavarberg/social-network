@@ -64,19 +64,18 @@ module.exports = {
 
   //post route to create reaction, stored in a thought's reaction array
   addReaction(req, res) {
-    Reaction.create(req.body)
-      .then((reaction) =>
-        Thought.findOneAndUpdate(
-          {
-            _id: req.params.thoughtId,
-          },
-          { $addToSet: { reactions: { reaction } } },
-          { runValidators: true, new: true }
-        )
-      )
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      {
+        $addToSet: {
+          reactions: req.body,
+        },
+      },
+      { runValidators: true, new: true }
+    )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: "No thought found with this id" })
+          ? res.status(404).json("No thought found with this id")
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
